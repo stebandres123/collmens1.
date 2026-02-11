@@ -1,0 +1,1483 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>COLLMENS — Insumos Médicos y Ortopedia</title>
+  <meta name="description"
+    content="COLLMENS: Insumos médicos y soluciones ortopédicas con calidad, cercanía y asesoría experta. Despacho a todo Chile.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;700&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
+
+    :root {
+      --primary: #0A6E5C;
+      --primary-light: #12A387;
+      --primary-glow: rgba(10, 110, 92, .12);
+      --accent: #E8F5F1;
+      --dark: #0D1B2A;
+      --gray: #8492A6;
+      --light: #F7F9FC;
+      --white: #FFFFFF;
+      --warm: #FFF8F0;
+      --radius: 20px;
+      --radius-sm: 12px;
+      --shadow: 0 8px 32px rgba(10, 110, 92, .08);
+      --shadow-lg: 0 16px 48px rgba(10, 110, 92, .12);
+      --font-head: 'Plus Jakarta Sans', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --font-mono: 'Space Grotesk', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--dark);
+      background: var(--light);
+      line-height: 1.6;
+      overflow-x: hidden
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: var(--font-head);
+      line-height: 1.15;
+      font-weight: 800
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit
+    }
+
+    img {
+      max-width: 100%;
+      display: block
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 clamp(1.2rem, 4vw, 2.5rem)
+    }
+
+    /* === NAV === */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 1rem 0;
+      transition: all .4s ease
+    }
+
+    .nav.scrolled {
+      background: rgba(255, 255, 255, .85);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, .06);
+      padding: .6rem 0
+    }
+
+    .nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between
+    }
+
+    .logo {
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: 1.5rem;
+      color: var(--primary);
+      letter-spacing: -.5px
+    }
+
+    .logo span {
+      color: var(--dark)
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center
+    }
+
+    .nav-links a {
+      font-size: .9rem;
+      font-weight: 500;
+      color: var(--dark);
+      transition: color .3s
+    }
+
+    .nav-links a:hover {
+      color: var(--primary)
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .75rem 1.8rem;
+      border-radius: 50px;
+      font-family: var(--font-head);
+      font-weight: 600;
+      font-size: .9rem;
+      border: none;
+      cursor: pointer;
+      transition: all .3s ease
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-light);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg)
+    }
+
+    .btn-outline {
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      background: transparent
+    }
+
+    .btn-outline:hover {
+      background: var(--primary);
+      color: #fff;
+      transform: translateY(-2px)
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px
+    }
+
+    .hamburger span {
+      width: 24px;
+      height: 2.5px;
+      background: var(--dark);
+      border-radius: 2px;
+      transition: all .3s
+    }
+
+    /* === HERO === */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: 5rem
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 20% 50%, rgba(10, 110, 92, .06) 0%, transparent 60%), radial-gradient(ellipse at 80% 20%, rgba(18, 163, 135, .05) 0%, transparent 50%), radial-gradient(ellipse at 60% 80%, rgba(232, 245, 241, .8) 0%, transparent 40%);
+      z-index: 0
+    }
+
+    .hero .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      position: relative;
+      z-index: 1
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: var(--accent);
+      color: var(--primary);
+      padding: .5rem 1.2rem;
+      border-radius: 50px;
+      font-size: .8rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem
+    }
+
+    .hero-badge .dot {
+      width: 8px;
+      height: 8px;
+      background: var(--primary);
+      border-radius: 50%;
+      animation: pulse 2s infinite
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: .4
+      }
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      color: var(--dark);
+      margin-bottom: 1.2rem;
+      letter-spacing: -1.5px
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--primary);
+      position: relative
+    }
+
+    .hero h1 em::after {
+      content: '';
+      position: absolute;
+      bottom: 4px;
+      left: 0;
+      width: 100%;
+      height: 8px;
+      background: var(--primary-glow);
+      border-radius: 4px;
+      z-index: -1
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--gray);
+      max-width: 500px;
+      margin-bottom: 2rem;
+      line-height: 1.7
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap
+    }
+
+    .hero-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center
+    }
+
+    .hero-img-wrapper {
+      width: 100%;
+      max-width: 480px;
+      aspect-ratio: 1;
+      border-radius: 40% 60% 55% 45%/55% 40% 60% 45%;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--accent), var(--primary-glow));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      animation: morph 8s ease-in-out infinite
+    }
+
+    @keyframes morph {
+
+      0%,
+      100% {
+        border-radius: 40% 60% 55% 45%/55% 40% 60% 45%
+      }
+
+      50% {
+        border-radius: 55% 45% 40% 60%/45% 55% 45% 55%
+      }
+    }
+
+    .hero-img-wrapper img {
+      width: 75%;
+      height: 75%;
+      object-fit: contain;
+      filter: drop-shadow(0 20px 40px rgba(0, 0, 0, .1))
+    }
+
+    .float-card {
+      position: absolute;
+      background: var(--white);
+      padding: 1rem 1.4rem;
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+      animation: float 3s ease-in-out infinite
+    }
+
+    .float-card.card-1 {
+      top: 15%;
+      right: -10%;
+      animation-delay: 0s
+    }
+
+    .float-card.card-2 {
+      bottom: 20%;
+      left: -5%;
+      animation-delay: 1.5s
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0)
+      }
+
+      50% {
+        transform: translateY(-10px)
+      }
+    }
+
+    .float-card .icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem
+    }
+
+    .float-card .icon.green {
+      background: var(--accent);
+      color: var(--primary)
+    }
+
+    .float-card .icon.warm {
+      background: var(--warm);
+      color: #E07A2F
+    }
+
+    .float-card .info small {
+      font-size: .7rem;
+      color: var(--gray)
+    }
+
+    .float-card .info strong {
+      font-size: .85rem;
+      display: block
+    }
+
+    /* === CATEGORIES === */
+    .categories {
+      padding: clamp(4rem, 10vw, 8rem) 0;
+      position: relative
+    }
+
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: .8rem;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-bottom: .8rem;
+      font-weight: 500
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      margin-bottom: 1rem;
+      letter-spacing: -1px
+    }
+
+    .section-sub {
+      color: var(--gray);
+      max-width: 550px;
+      margin-bottom: 3rem;
+      font-size: 1rem
+    }
+
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem
+    }
+
+    .cat-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 2.2rem;
+      position: relative;
+      overflow: hidden;
+      transition: all .4s ease;
+      border: 1px solid rgba(0, 0, 0, .04);
+      cursor: pointer
+    }
+
+    .cat-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--primary-glow)
+    }
+
+    .cat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--primary-light));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .4s ease
+    }
+
+    .cat-card:hover::before {
+      transform: scaleX(1)
+    }
+
+    .cat-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      margin-bottom: 1.2rem
+    }
+
+    .cat-card h3 {
+      font-size: 1.15rem;
+      margin-bottom: .5rem;
+      font-weight: 700
+    }
+
+    .cat-card p {
+      font-size: .88rem;
+      color: var(--gray);
+      line-height: 1.6
+    }
+
+    /* === VALUE PROPS === */
+    .value {
+      padding: clamp(4rem, 10vw, 8rem) 0;
+      background: var(--white);
+      position: relative
+    }
+
+    .value::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      left: 0;
+      width: 100%;
+      height: 120px;
+      background: linear-gradient(to bottom, var(--light), var(--white));
+      pointer-events: none
+    }
+
+    .value-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3rem
+    }
+
+    .value-card {
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      border-radius: var(--radius);
+      transition: all .3s
+    }
+
+    .value-card:hover {
+      background: var(--accent)
+    }
+
+    .value-num {
+      font-family: var(--font-mono);
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: .3rem
+    }
+
+    .value-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: .6rem;
+      font-weight: 700
+    }
+
+    .value-card p {
+      font-size: .88rem;
+      color: var(--gray);
+      line-height: 1.6
+    }
+
+    /* === PRODUCTS === */
+    .products {
+      padding: clamp(4rem, 10vw, 8rem) 0;
+      background: linear-gradient(180deg, var(--white) 0%, var(--light) 100%)
+    }
+
+    .prod-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.8rem
+    }
+
+    .prod-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid rgba(0, 0, 0, .04);
+      transition: all .4s;
+      position: relative
+    }
+
+    .prod-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg)
+    }
+
+    .prod-img {
+      height: 220px;
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative
+    }
+
+    .prod-img img {
+      width: 70%;
+      height: 70%;
+      object-fit: contain;
+      transition: transform .4s
+    }
+
+    .prod-card:hover .prod-img img {
+      transform: scale(1.08)
+    }
+
+    .prod-tag {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: var(--primary);
+      color: #fff;
+      font-size: .7rem;
+      font-weight: 600;
+      padding: .3rem .8rem;
+      border-radius: 50px
+    }
+
+    .prod-body {
+      padding: 1.4rem
+    }
+
+    .prod-body h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: .4rem
+    }
+
+    .prod-body .prod-cat {
+      font-size: .78rem;
+      color: var(--primary);
+      font-weight: 500;
+      margin-bottom: .6rem
+    }
+
+    .prod-body .prod-price {
+      font-family: var(--font-mono);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--dark)
+    }
+
+    /* === ABOUT === */
+    .about {
+      padding: clamp(4rem, 10vw, 8rem) 0;
+      overflow: hidden
+    }
+
+    .about .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center
+    }
+
+    .about-img {
+      border-radius: var(--radius);
+      overflow: hidden;
+      position: relative
+    }
+
+    .about-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 3px solid var(--primary-glow);
+      border-radius: var(--radius);
+      transform: translate(16px, 16px);
+      z-index: -1
+    }
+
+    .about-img img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      border-radius: var(--radius)
+    }
+
+    .about h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+      margin-bottom: 1.2rem;
+      letter-spacing: -1px
+    }
+
+    .about p {
+      color: var(--gray);
+      margin-bottom: 1rem;
+      line-height: 1.7
+    }
+
+    .about-features {
+      display: flex;
+      flex-direction: column;
+      gap: .8rem;
+      margin: 1.5rem 0
+    }
+
+    .about-feature {
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+      font-weight: 500;
+      font-size: .95rem
+    }
+
+    .about-feature .check {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: var(--accent);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .9rem;
+      flex-shrink: 0
+    }
+
+    /* === TESTIMONIALS === */
+    .testimonials {
+      padding: clamp(4rem, 10vw, 8rem) 0;
+      background: var(--white)
+    }
+
+    .test-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem
+    }
+
+    .test-card {
+      background: var(--light);
+      border-radius: var(--radius);
+      padding: 2rem;
+      position: relative;
+      transition: all .3s
+    }
+
+    .test-card:hover {
+      box-shadow: var(--shadow)
+    }
+
+    .test-card .stars {
+      color: #F5A623;
+      font-size: .9rem;
+      margin-bottom: 1rem;
+      letter-spacing: 2px
+    }
+
+    .test-card blockquote {
+      font-size: .95rem;
+      color: var(--dark);
+      line-height: 1.7;
+      margin-bottom: 1.2rem;
+      font-style: italic
+    }
+
+    .test-card .author {
+      display: flex;
+      align-items: center;
+      gap: .8rem
+    }
+
+    .test-card .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: var(--primary);
+      font-size: .9rem
+    }
+
+    .test-card .author-info small {
+      color: var(--gray);
+      font-size: .78rem
+    }
+
+    .test-card .author-info strong {
+      display: block;
+      font-size: .88rem
+    }
+
+    /* === CTA === */
+    .cta {
+      padding: clamp(4rem, 10vw, 7rem) 0;
+      background: linear-gradient(135deg, var(--primary) 0%, #085445 50%, var(--primary-light) 100%);
+      color: #fff;
+      text-align: center;
+      position: relative;
+      overflow: hidden
+    }
+
+    .cta::before {
+      content: '';
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .04);
+      top: -200px;
+      right: -100px
+    }
+
+    .cta::after {
+      content: '';
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .03);
+      bottom: -100px;
+      left: -50px
+    }
+
+    .cta h2 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      margin-bottom: 1rem;
+      letter-spacing: -1px;
+      position: relative;
+      z-index: 1
+    }
+
+    .cta p {
+      opacity: .85;
+      max-width: 550px;
+      margin: 0 auto 2rem;
+      font-size: 1.05rem;
+      position: relative;
+      z-index: 1
+    }
+
+    .cta .btn {
+      position: relative;
+      z-index: 1
+    }
+
+    .btn-white {
+      background: #fff;
+      color: var(--primary);
+      font-weight: 700
+    }
+
+    .btn-white:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, .2)
+    }
+
+    /* === CONTACT === */
+    .contact {
+      padding: clamp(4rem, 10vw, 8rem) 0
+    }
+
+    .contact .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem
+    }
+
+    .contact-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start
+    }
+
+    .contact-item .ci-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0
+    }
+
+    .contact-item h4 {
+      font-size: .95rem;
+      margin-bottom: .2rem
+    }
+
+    .contact-item p {
+      font-size: .88rem;
+      color: var(--gray)
+    }
+
+    .contact-form {
+      background: var(--white);
+      padding: 2.5rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow)
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem
+    }
+
+    .form-group label {
+      display: block;
+      font-size: .85rem;
+      font-weight: 600;
+      margin-bottom: .4rem
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: .85rem 1rem;
+      border: 2px solid #E8ECF0;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-body);
+      font-size: .9rem;
+      transition: all .3s;
+      outline: none;
+      background: var(--light)
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--primary);
+      background: var(--white);
+      box-shadow: 0 0 0 4px var(--primary-glow)
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px
+    }
+
+    /* === FOOTER === */
+    .footer {
+      background: var(--dark);
+      color: rgba(255, 255, 255, .7);
+      padding: 3rem 0 1.5rem
+    }
+
+    .footer .container {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 3rem
+    }
+
+    .footer .logo {
+      color: var(--primary-light);
+      font-size: 1.3rem;
+      margin-bottom: .8rem
+    }
+
+    .footer p {
+      font-size: .85rem;
+      line-height: 1.6;
+      max-width: 300px
+    }
+
+    .footer h4 {
+      color: #fff;
+      font-size: .9rem;
+      margin-bottom: 1rem;
+      font-family: var(--font-head)
+    }
+
+    .footer ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .5rem
+    }
+
+    .footer ul a {
+      font-size: .85rem;
+      transition: color .3s
+    }
+
+    .footer ul a:hover {
+      color: var(--primary-light)
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, .08);
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      text-align: center;
+      font-size: .8rem
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem
+    }
+
+    .social-links a {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, .06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all .3s;
+      font-size: .9rem
+    }
+
+    .social-links a:hover {
+      background: var(--primary);
+      color: #fff;
+      transform: translateY(-2px)
+    }
+
+    /* === ANIMATIONS === */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .7s ease, transform .7s ease
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0)
+    }
+
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity .7s ease, transform .7s ease
+    }
+
+    .reveal-left.active {
+      opacity: 1;
+      transform: translateX(0)
+    }
+
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity .7s ease, transform .7s ease
+    }
+
+    .reveal-right.active {
+      opacity: 1;
+      transform: translateX(0)
+    }
+
+    /* === MOBILE === */
+    @media(max-width:968px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, .97);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        padding: 2rem;
+        gap: 1.2rem;
+        box-shadow: var(--shadow)
+      }
+
+      .nav-links.open {
+        display: flex
+      }
+
+      .hamburger {
+        display: flex
+      }
+
+      .hero .container {
+        grid-template-columns: 1fr;
+        text-align: center
+      }
+
+      .hero p {
+        margin: 0 auto 2rem
+      }
+
+      .hero-actions {
+        justify-content: center
+      }
+
+      .hero-visual {
+        margin-top: 2rem
+      }
+
+      .float-card {
+        display: none
+      }
+
+      .value-grid {
+        grid-template-columns: 1fr
+      }
+
+      .about .container {
+        grid-template-columns: 1fr
+      }
+
+      .about-img {
+        order: -1
+      }
+
+      .contact .container {
+        grid-template-columns: 1fr
+      }
+
+      .footer .container {
+        grid-template-columns: 1fr;
+        text-align: center
+      }
+
+      .footer .social-links {
+        justify-content: center
+      }
+
+      .footer p {
+        margin: 0 auto
+      }
+    }
+
+    @media(max-width:600px) {
+      .hero-img-wrapper {
+        max-width: 300px
+      }
+
+      .cat-grid {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .cat-card {
+        padding: 1.5rem
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="container">
+      <a href="#" class="logo">COLL<span>MENS</span></a>
+      <div class="nav-links" id="navLinks">
+        <a href="#categorias">Productos</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#testimonios">Testimonios</a>
+        <a href="#contacto">Contacto</a>
+        <a href="#contacto" class="btn btn-primary">Cotiza Aquí</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge"><span class="dot"></span> Insumos Médicos & Ortopedia</div>
+        <h1>Tu bienestar,<br>nuestra <em>especialidad</em></h1>
+        <p>Soluciones ortopédicas e insumos médicos con la calidad y cercanía que tú y tu familia merecen. Asesoría
+          experta para cada necesidad.</p>
+        <div class="hero-actions">
+          <a href="#categorias" class="btn btn-primary">Ver Productos →</a>
+          <a href="https://wa.me/56900000000" class="btn btn-outline">💬 WhatsApp</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1584982751601-97dcc096659c?w=500&h=500&fit=crop&q=80"
+            alt="Profesional de salud">
+        </div>
+        <div class="float-card card-1">
+          <div class="icon green">✓</div>
+          <div class="info"><small>Certificación</small><strong>Productos ISO</strong></div>
+        </div>
+        <div class="float-card card-2">
+          <div class="icon warm">🚚</div>
+          <div class="info"><small>Envíos</small><strong>A todo Chile</strong></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORIES -->
+  <section class="categories" id="categorias">
+    <div class="container">
+      <div class="section-label reveal">Nuestras Categorías</div>
+      <h2 class="section-title reveal">Todo lo que necesitas en <em style="font-style:normal;color:var(--primary)">un
+          solo lugar</em></h2>
+      <p class="section-sub reveal">Productos seleccionados con los más altos estándares de calidad para tu recuperación
+        y bienestar.</p>
+      <div class="cat-grid">
+        <div class="cat-card reveal">
+          <div class="cat-icon">🦴</div>
+          <h3>Ortopedia</h3>
+          <p>Rodilleras, tobilleras, fajas ortopédicas, correctores de postura y más para tu recuperación.</p>
+        </div>
+        <div class="cat-card reveal">
+          <div class="cat-icon">🩺</div>
+          <h3>Insumos Médicos</h3>
+          <p>Guantes, gasas, jeringas, vendas y todo el material clínico que necesitas.</p>
+        </div>
+        <div class="cat-card reveal">
+          <div class="cat-icon">♿</div>
+          <h3>Movilidad</h3>
+          <p>Sillas de ruedas, andadores, bastones y equipos para mejorar tu independencia diaria.</p>
+        </div>
+        <div class="cat-card reveal">
+          <div class="cat-icon">💊</div>
+          <h3>Rehabilitación</h3>
+          <p>Bandas elásticas, pedaleras, compresas y productos para fisioterapia y cuidado.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUE PROPS -->
+  <section class="value">
+    <div class="container" style="text-align:center">
+      <div class="section-label reveal">¿Por qué COLLMENS?</div>
+      <h2 class="section-title reveal" style="max-width:600px;margin:0 auto 0">La diferencia está en los <em
+          style="font-style:normal;color:var(--primary)">detalles</em></h2>
+      <div class="value-grid">
+        <div class="value-card reveal">
+          <div class="value-num" data-target="500">0+</div>
+          <h3>Productos Disponibles</h3>
+          <p>Catálogo amplio con las mejores marcas del mercado médico-ortopédico.</p>
+        </div>
+        <div class="value-card reveal">
+          <div class="value-num" data-target="98">0%</div>
+          <h3>Clientes Satisfechos</h3>
+          <p>Asesoría personalizada que hace la diferencia en cada compra.</p>
+        </div>
+        <div class="value-card reveal">
+          <div class="value-num" data-target="24">0h</div>
+          <h3>Despacho Express</h3>
+          <p>Envíos rápidos a todo Chile con seguimiento en tiempo real.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section class="products" id="productos">
+    <div class="container">
+      <div class="section-label reveal">Destacados</div>
+      <h2 class="section-title reveal">Productos que marcan la diferencia</h2>
+      <p class="section-sub reveal">Seleccionados por nuestro equipo de especialistas.</p>
+      <div class="prod-grid">
+        <div class="prod-card reveal">
+          <div class="prod-img"><span class="prod-tag">Popular</span><img
+              src="https://images.unsplash.com/photo-1631549916768-4119b2e5f926?w=400&h=300&fit=crop&q=80"
+              alt="Rodillera ortopédica"></div>
+          <div class="prod-body">
+            <p class="prod-cat">Ortopedia</p>
+            <h3>Rodillera Ortopédica Premium</h3>
+            <p class="prod-price">$24.990</p>
+          </div>
+        </div>
+        <div class="prod-card reveal">
+          <div class="prod-img"><img
+              src="https://images.unsplash.com/photo-1584515933487-779824d29309?w=400&h=300&fit=crop&q=80"
+              alt="Silla de ruedas"></div>
+          <div class="prod-body">
+            <p class="prod-cat">Movilidad</p>
+            <h3>Silla de Ruedas Aluminio</h3>
+            <p class="prod-price">$189.990</p>
+          </div>
+        </div>
+        <div class="prod-card reveal">
+          <div class="prod-img"><span class="prod-tag">Nuevo</span><img
+              src="https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=400&h=300&fit=crop&q=80"
+              alt="Kit de curación"></div>
+          <div class="prod-body">
+            <p class="prod-cat">Insumos</p>
+            <h3>Kit Curación Profesional</h3>
+            <p class="prod-price">$12.990</p>
+          </div>
+        </div>
+        <div class="prod-card reveal">
+          <div class="prod-img"><img
+              src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400&h=300&fit=crop&q=80"
+              alt="Corrector postura"></div>
+          <div class="prod-body">
+            <p class="prod-cat">Rehabilitación</p>
+            <h3>Corrector Postura Inteligente</h3>
+            <p class="prod-price">$19.990</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="nosotros">
+    <div class="container">
+      <div class="about-img reveal-left">
+        <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=600&h=400&fit=crop&q=80"
+          alt="Equipo COLLMENS">
+      </div>
+      <div class="reveal-right">
+        <div class="section-label">Sobre Nosotros</div>
+        <h2>Más que una tienda, somos tu <em style="font-style:normal;color:var(--primary)">aliado en salud</em></h2>
+        <p>En <strong>COLLMENS</strong> creemos que el acceso a productos médicos de calidad debe ser cercano y humano.
+          No somos una gran corporación, somos un equipo comprometido con tu bienestar.</p>
+        <p>Cada producto que ofrecemos ha sido seleccionado pensando en la calidad, durabilidad y el confort que tú
+          mereces.</p>
+        <div class="about-features">
+          <div class="about-feature"><span class="check">✓</span> Asesoría personalizada por profesionales</div>
+          <div class="about-feature"><span class="check">✓</span> Productos con garantía y certificación</div>
+          <div class="about-feature"><span class="check">✓</span> Atención cercana y humana</div>
+          <div class="about-feature"><span class="check">✓</span> Precios justos y competitivos</div>
+        </div>
+        <a href="#contacto" class="btn btn-primary" style="margin-top:1rem">Conócenos →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials" id="testimonios">
+    <div class="container" style="text-align:center">
+      <div class="section-label reveal">Testimonios</div>
+      <h2 class="section-title reveal">Lo que dicen nuestros <em
+          style="font-style:normal;color:var(--primary)">clientes</em></h2>
+      <div class="test-grid">
+        <div class="test-card reveal">
+          <div class="stars">★★★★★</div>
+          <blockquote>"Excelente atención, me asesoraron para elegir la rodillera perfecta para mi recuperación. El
+            despacho fue rápido y el producto de primera calidad."</blockquote>
+          <div class="author">
+            <div class="avatar">MR</div>
+            <div class="author-info"><strong>María Rodríguez</strong><small>Paciente de rehabilitación</small></div>
+          </div>
+        </div>
+        <div class="test-card reveal">
+          <div class="stars">★★★★★</div>
+          <blockquote>"Compré una silla de ruedas para mi abuela y quedamos impresionados con la calidad. El equipo de
+            COLLMENS nos ayudó a elegir la mejor opción."</blockquote>
+          <div class="author">
+            <div class="avatar">CP</div>
+            <div class="author-info"><strong>Carlos Pérez</strong><small>Cliente frecuente</small></div>
+          </div>
+        </div>
+        <div class="test-card reveal">
+          <div class="stars">★★★★★</div>
+          <blockquote>"Los mejores precios en insumos médicos que he encontrado. La atención es personalizada y siempre
+            tienen stock disponible. Muy recomendados."</blockquote>
+          <div class="author">
+            <div class="avatar">LV</div>
+            <div class="author-info"><strong>Laura Vásquez</strong><small>Profesional de salud</small></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="container">
+      <h2 class="reveal">¿Necesitas asesoría personalizada?</h2>
+      <p class="reveal">Nuestro equipo está listo para ayudarte a encontrar exactamente lo que necesitas. Cotiza sin
+        compromiso.</p>
+      <a href="https://wa.me/56900000000" class="btn btn-white reveal">💬 Escríbenos por WhatsApp</a>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contacto">
+    <div class="container">
+      <div class="reveal-left">
+        <div class="section-label">Contacto</div>
+        <h2 class="section-title">Conversemos sobre lo que <em
+            style="font-style:normal;color:var(--primary)">necesitas</em></h2>
+        <p class="section-sub">Estamos aquí para resolver tus dudas y ayudarte en cada paso.</p>
+        <div class="contact-info">
+          <div class="contact-item">
+            <div class="ci-icon">📍</div>
+            <div>
+              <h4>Dirección</h4>
+              <p>Tu dirección comercial aquí, Chile</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="ci-icon">📱</div>
+            <div>
+              <h4>Teléfono</h4>
+              <p>+56 9 0000 0000</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="ci-icon">📧</div>
+            <div>
+              <h4>Email</h4>
+              <p>contacto@collmens.cl</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="ci-icon">🕐</div>
+            <div>
+              <h4>Horario</h4>
+              <p>Lunes a Viernes: 9:00 – 18:30<br>Sábado: 10:00 – 14:00</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <form class="contact-form reveal-right"
+        onsubmit="event.preventDefault();alert('¡Mensaje enviado! Te contactaremos pronto.')">
+        <h3 style="font-family:var(--font-head);margin-bottom:1.5rem;font-size:1.2rem">Envíanos un mensaje</h3>
+        <div class="form-group"><label for="name">Nombre</label><input type="text" id="name"
+            placeholder="Tu nombre completo" required></div>
+        <div class="form-group"><label for="email">Email</label><input type="email" id="email"
+            placeholder="tu@email.com" required></div>
+        <div class="form-group"><label for="phone">Teléfono</label><input type="tel" id="phone"
+            placeholder="+56 9 1234 5678"></div>
+        <div class="form-group"><label for="message">Mensaje</label><textarea id="message"
+            placeholder="¿En qué podemos ayudarte?" required></textarea></div>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Enviar Mensaje
+          →</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div>
+        <div class="logo">COLL<span style="color:rgba(255,255,255,.9)">MENS</span></div>
+        <p>Insumos médicos y soluciones ortopédicas con la calidad y cercanía que tú y tu familia merecen.</p>
+        <div class="social-links">
+          <a href="#" aria-label="Instagram">📷</a>
+          <a href="#" aria-label="Facebook">📘</a>
+          <a href="#" aria-label="WhatsApp">💬</a>
+        </div>
+      </div>
+      <div>
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="#categorias">Productos</a></li>
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#testimonios">Testimonios</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Categorías</h4>
+        <ul>
+          <li><a href="#">Ortopedia</a></li>
+          <li><a href="#">Insumos Médicos</a></li>
+          <li><a href="#">Movilidad</a></li>
+          <li><a href="#">Rehabilitación</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom container">
+      <p>© 2026 COLLMENS — Insumos Médicos y Ortopedia. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script>
+    // === Nav Scroll ===
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 50) });
+
+    // === Hamburger ===
+    const hamburger = document.getElementById('hamburger'), navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => { navLinks.classList.toggle('open'); hamburger.classList.toggle('active') });
+    document.querySelectorAll('.nav-links a').forEach(l => l.addEventListener('click', () => navLinks.classList.remove('open')));
+
+    // === Scroll Reveal ===
+    const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('active'); observer.unobserve(e.target) } }) }, { threshold: .15, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el => observer.observe(el));
+
+    // === Counter Animation ===
+    const counterObserver = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) { const el = e.target, target = +el.dataset.target, suffix = el.textContent.replace(/[0-9]/g, ''); let current = 0; const step = target / 60; const timer = setInterval(() => { current += step; if (current >= target) { current = target; clearInterval(timer) } el.textContent = Math.floor(current) + suffix }, 25); counterObserver.unobserve(el) } }) }, { threshold: .5 });
+    document.querySelectorAll('.value-num[data-target]').forEach(el => counterObserver.observe(el));
+
+    // === Magnetic Buttons ===
+    document.querySelectorAll('.btn-primary,.btn-white').forEach(btn => {
+      btn.addEventListener('mousemove', e => { const r = btn.getBoundingClientRect(); const x = (e.clientX - r.left - r.width / 2) * .15; const y = (e.clientY - r.top - r.height / 2) * .15; btn.style.transform = `translate(${x}px,${y}px)` });
+      btn.addEventListener('mouseleave', () => { btn.style.transform = ''; btn.style.transition = 'transform .3s ease' });
+      btn.addEventListener('mouseenter', () => { btn.style.transition = 'transform .1s ease' });
+    });
+
+    // === Parallax Hero ===
+    window.addEventListener('scroll', () => { const s = window.scrollY; const hero = document.querySelector('.hero-visual'); if (hero && s < 800) { hero.style.transform = `translateY(${s * .08}px)` } });
+  </script>
+</body>
+
+</html>
