@@ -1123,6 +1123,64 @@
         padding: 1.5rem
       }
     }
+
+    /* === FLOATING WA === */
+    .float-wa {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 75px;
+      height: 75px;
+      background: #25D366;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+      z-index: 1000;
+      transition: all .3s ease;
+      animation: pulse-wa 2s infinite;
+      text-decoration: none;
+    }
+
+    .float-wa:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 16px rgba(37, 211, 102, 0.6);
+      color: white;
+    }
+
+    @keyframes pulse-wa {
+      0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+      }
+
+      70% {
+        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+      }
+    }
+
+    /* === MAP === */
+    .map-container {
+      width: 100%;
+      height: 100%;
+      min-height: 400px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
   </style>
 </head>
 
@@ -1397,20 +1455,11 @@
           </div>
         </div>
       </div>
-      <form class="contact-form reveal-right"
-        onsubmit="event.preventDefault();alert('¡Mensaje enviado! Te contactaremos pronto.')">
-        <h3 style="font-family:var(--font-head);margin-bottom:1.5rem;font-size:1.2rem">Envíanos un mensaje</h3>
-        <div class="form-group"><label for="name">Nombre</label><input type="text" id="name"
-            placeholder="Tu nombre completo" required></div>
-        <div class="form-group"><label for="email">Email</label><input type="email" id="email"
-            placeholder="tu@email.com" required></div>
-        <div class="form-group"><label for="phone">Teléfono</label><input type="tel" id="phone"
-            placeholder="+56 9 1234 5678"></div>
-        <div class="form-group"><label for="message">Mensaje</label><textarea id="message"
-            placeholder="¿En qué podemos ayudarte?" required></textarea></div>
-        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Enviar Mensaje
-          →</button>
-      </form>
+      <div class="map-container reveal-right">
+        <iframe
+          src="https://maps.google.com/maps?q=Manuel+Montt+740,+Curic%C3%B3,+Maule&t=&z=15&ie=UTF8&iwloc=&output=embed"
+          allowfullscreen="" loading="lazy"></iframe>
+      </div>
     </div>
   </section>
 
@@ -1449,6 +1498,10 @@
       <p>© 2026 COLLMENS — Insumos Médicos y Ortopedia. Todos los derechos reservados.</p>
     </div>
   </footer>
+
+  <a href="https://wa.me/56900000000" class="float-wa" target="_blank" aria-label="Chat en WhatsApp">
+    💬
+  </a>
 
   <script>
     // === Nav Scroll ===
